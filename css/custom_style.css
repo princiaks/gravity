@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* background: #5256ad; */
+}
+.drag-area-thumb
+{
+  border: 2px dashed rgb(52, 50, 56);
+  height: 200px;
+  width: 200px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+.drag-area-thumb.active{
+  border: 2px solid rgb(8, 4, 4);
+}
+.drag-area-thumb .icon{
+  font-size: 70	px;
+  color: rgb(52, 50, 56);
+}
+.drag-area-thumb header{
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(52, 50, 56);
+}
+.drag-area-thumb span{
+  font-size: 15px;
+  font-weight: 500;
+  color: rgb(52, 50, 56);
+  margin: 10px 0 15px 0;
+}
+.drag-area-thumb button{
+  padding: 10px 25px;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  background: rgb(56, 52, 52);
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.drag-area-thumb img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.drag-area{
+  border: 2px dashed rgb(52, 50, 56);
+  height: 200px;
+  width: 600px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+.drag-area.active{
+  border: 2px solid rgb(8, 4, 4);
+}
+.drag-area .icon{
+  font-size: 100	px;
+  color: rgb(52, 50, 56);
+}
+.drag-area header{
+  font-size: 15px;
+  font-weight: 500;
+  color: rgb(52, 50, 56);
+}
+.drag-area span{
+  font-size: 15px;
+  font-weight: 500;
+  color: rgb(52, 50, 56);
+  margin: 5px 0 15px 0;
+}
+.drag-area button{
+  padding: 10px 25px;
+  font-size: 15px;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  background: rgb(56, 52, 52);
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.drag-area img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
