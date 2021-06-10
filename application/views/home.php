@@ -1,7 +1,7 @@
 
             
             <div class="container pt-4 mt-4 p-3 border border-dark" name="section_product_details"id="section_product_details">
-            <form role="form" class="dropzone" method="post" enctype="multipart/form-data" id="prod_details" name="product_details">
+            <form role="form" class="dropzone" method="post" enctype="multipart/form-data" id="prod_details" name="product_details" action="<?php echo site_url('gravitycon/gravity_upload');?>">
             <h5>Product Details</h5>
             <div class="row pt-3">
             <div class="col-sm-9">
@@ -26,7 +26,7 @@
             </div>
             <div class="col-sm-6">
             <label class="control-label">Choose Product Category</label>
-            <select id="product_category" multiple class="selectpicker" name="product_category">
+            <select id="product_category" multiple class="selectpicker" name="product_category[]">
             <option>Formals</option>
             <option>Casuals</option>
             </select>
@@ -49,14 +49,14 @@
             <div class="row">
             <div class="col-sm-6">
             <label class="control-label">Choose Product Type</label>
-            <select  id="product_type" multiple class="selectpicker"  name="product_type">
+            <select  id="product_type" multiple class="selectpicker"  name="product_type[]">
             <option>Latest Products</option>
             <option>Bundle Offer</option>
             </select>
             </div>
             <div class="col-sm-6">
             <label class="control-label">Choose Colour Variants</label>
-            <select id="color_variants" multiple class="selectpicker" name="color_variants">
+            <select id="color_variants" multiple class="selectpicker" name="color_variants[]">
             <option>Black</option>
             <option>Red</option>
             </select>
@@ -67,7 +67,7 @@
             <div class="row">
             <div class="col-sm-6">
             <label class="control-label">Choose Size Variants</label>
-            <select id="size_variants" multiple class="selectpicker"  name="size_variants">
+            <select id="size_variants" multiple class="selectpicker"  name="size_variants[]">
             <option>40</option>
             <option>41</option>
             <option>42</option>
@@ -87,7 +87,7 @@
             <header>Drag & Drop To Upload File</header>
             <span>OR</span>
             <button type="button" id="btn_thumbnail">Browse File</button>
-            <input type="file" name="thumb[]" class="file btn_thumbnail_click" data-show-upload="false" data-show-caption="true" multiple hidden >
+            <input type="file" name="thumb" id="thumb" class="file btn_thumbnail_click" data-show-upload="false" data-show-caption="true" multiple hidden >
 
            
             </div>
@@ -99,7 +99,7 @@
             <header>Drag & Drop To Upload File</header>
             <span>OR</span>
             <button type="button" id="btn_prodimg">Browse File</button>
-            <input type="file" name="prod[]" class="file btn_prodimg_click" data-show-upload="false" data-show-caption="true" multiple hidden>
+            <input type="file" name="prod[]" id="prod" class="file btn_prodimg_click" data-show-upload="false" data-show-caption="true" multiple hidden>
 
             </div>
        

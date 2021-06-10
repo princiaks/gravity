@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    /* $('select').selectpicker(); */
+    $('select').selectpicker();
    
   });
   function do_formvalidate(formid)
@@ -31,32 +31,36 @@ $(document).ready(function() {
    
 }
     $('#prod_details').submit(function(e){
-        e.preventDefault();
-        alert("zdfsdf");
-        var formData = new FormData(); 
-        var formdata=$('#prod_details').serialize();
-        formData.append("thumb", fileInputElement.files);
-     
-        /* console.log(formData);
+      /*   e.preventDefault();
+        var arg1=$('#prod_details').serialize();
+        var def_image = $('#thumb');
+        var prod_image = $('#prod');
+        var formdata = new FormData(); 
+        
+        formdata.append('def_image', def_image.files);
+        formdata.append('prod_image', prod_image.files);
+        formdata.append('formdata', arg1);
+        console.log(formdata);
         $.ajax({  
           type:"product_details",
           url:"dd_process.php",  
           method:"POST",  
-          data:formData,  
+          data:formdata,  
+          dataType: 'json',
           contentType:false,  
           cache: false,  
           processData: false,  
           success:function(data){  
       
-               /* $('#uploaded_image').html(data);   
+      $('#uploaded_image').html(data);   
           }  
-      });   */
-      /*   do_formvalidate('#prod_details'); */
-        
+      }); 
+     do_formvalidate('#prod_details');
+     
        $('#section_product_details').fadeOut(100);
        $('#section_image_upload').fadeIn(100);
        
-    
+     */
         });
 
         $('#save_next2').click(function(e){
