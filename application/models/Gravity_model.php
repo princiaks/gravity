@@ -9,12 +9,12 @@ class Gravity_model extends CI_Model {
         public function insert_product_details($data=array())
         {
     
-     $params=array('product_id', 'default_thumbnail_url','default_thumbnail_name');
-     foreach($params as $param)
-     {
+        $params=array('product_id', 'default_thumbnail_url','default_thumbnail_name');
+        foreach($params as $param)
+        {
         $def_table_data[$param]=$data[$param];
-     }
-     $def_table_data['color']='default';
+        }
+        $def_table_data['color']='default';
 
         $this->db->insert('default_images', $def_table_data);
         $data['default_img_id'] = $this->db->insert_id();
