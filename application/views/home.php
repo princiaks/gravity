@@ -31,7 +31,7 @@
             </div>
             <div class="col-sm-6">
             <label class="control-label">Choose Product Category</label>
-            <select id="product_category" multiple class="selectpicker" name="product_category[]" required>
+            <select id="product_category" multiple class="prodsel selectpicker " name="product_category[]" required>
             <option>Formals</option>
             <option>Casuals</option>
             </select>
@@ -57,7 +57,7 @@
             <div class="row">
             <div class="col-sm-6">
             <label class="control-label">Choose Product Type</label>
-            <select  id="product_type" multiple class="selectpicker"  name="product_type[]" required>
+            <select  id="product_type" multiple class="prodsel selectpicker"  name="product_type[]" required>
             <option value="latest_products">Latest Products</option>
             <option value="bundle_offer">Bundle Offer</option>
             </select>
@@ -65,7 +65,7 @@
             </div>
             <div class="col-sm-6">
             <label class="control-label">Choose Colour Variants</label>
-            <select id="color_variants" multiple class="selectpicker" name="color_variants[]" required>
+            <select id="color_variants" multiple class="prodsel selectpicker" name="color_variants[]" required>
             <option value="black">Black</option>
             <option value="red">Red</option>
             <option value="blue">Blue</option>
@@ -81,7 +81,7 @@
             <div class="row">
             <div class="col-sm-6">
             <label class="control-label">Choose Size Variants</label>
-            <select id="size_variants" multiple class="selectpicker"  name="size_variants[]" required>
+            <select id="size_variants" multiple class="prodsel selectpicker"  name="size_variants[]" required>
             <option value="40">40</option>
             <option value="41">41</option>
             <option value="42">42</option>

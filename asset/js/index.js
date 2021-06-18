@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('select').selectpicker();  
+    $('.prodsel').selectpicker();  
     $('#prod_details').validate();
   });
-  
+ 

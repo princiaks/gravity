@@ -50,9 +50,8 @@ class Gravitycon extends CI_Controller {
 
 			foreach($params3 as $param)
 			{
-				$data[$param]=implode(',',$_POST[$param]);
+				$data[$param]=json_encode($_POST[$param]);
 			}
-
 			$data['product_id']= 'prod' . strtotime('now') .rand(0,9);
 			if (!is_dir('uploads/'.$data['product_id'].'/default-thumbnails')) {
 				mkdir('uploads/'.$data['product_id'].'/default-thumbnails', 0777, TRUE);
@@ -125,24 +124,38 @@ class Gravitycon extends CI_Controller {
 					
 		}
 		$this->gravity_model->insert_product_details($data);
+		$this->load->helper('cookie');
+		set_cookie('color_variants',$data['color_variants']);
+		set_cookie('size_variants',$data['color_variants']);
 		$this->load->view('header');
 		$data=array(
-			'color_variants'=>$_POST['color_variants']
+			/* 'color_variants'=>$data['color_variants'],
+			'size_variants'=>$data['size_variants'], */
+			'product_name'=>$data['product_name'],
+			'sku'=>$data['sku'],
+			'product_id'=>$data['product_id']
 		);
-		$this->load->view('color-variants-upload',$data);
+		$this->load->view('product-stock-details',$data);
         $this->load->view('footer');
 		
 
 		/* $this->db->insert('product_details',$data);   */
-		
-			
-				
-		
-		
-			 
-	
    
 		
+	}
+	public function gravityproduct_stock()
+	{
+		$data =array();
+		$data['product_id']=$_POST['product_id'];
+		$data['product_details']=$_POST['product_details'];
+		
+		$this->gravity_model->insert_product_stock_details($data);
+		/* $data['stock_details']=$this->gravity_model->get_stock_details($data['product_id']); */
+		$this->load->view('header');
+		$this->load->view('product_color_variant_imgupload',$data);
+		/* $this->load->view('view-product-stock-details',$data); */
+        $this->load->view('footer');
+
 	}
 	
 }
