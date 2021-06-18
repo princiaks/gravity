@@ -9,8 +9,6 @@ class Gravity_model extends CI_Model {
         public function insert_product_details($data=array())
         {
     
-     $sucesss = true;
-     $multiple_tables_affected = true; //up_user and up_add_user
      $params=array('product_id', 'default_thumbnail_url','default_thumbnail_name');
      foreach($params as $param)
      {
