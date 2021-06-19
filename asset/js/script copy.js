@@ -27,21 +27,17 @@ $(document).ready(function(e)
   });
   
 });
-$('.btnbrowse_def,.btnbrowse_prod').click(function(e){
+$('#btn_thumbnail,#btn_prodimg').click(function(e){
   e.preventDefault();
   var id=$(this).attr('id');
-  $('#'+id+'_click').click();
+  $('.'+id+'_click').click();
 });
 $('.btn_thumbnail_click,.btn_prodimg_click').change(function(e){
   e.preventDefault();
-  id=$(this).attr("id");
-  var num = id.substring(id.lastIndexOf('-')+1);
-  num=num.charAt(0);
-  alert(num);
-  filePreview(this,num);
+  filePreview(this);
 });
 var data;
-function filePreview(input,num) {
+function filePreview(input) {
   console.log(input);
  
   if (input.files && input.files[0]) {
@@ -54,7 +50,7 @@ function filePreview(input,num) {
 
        if($(input).hasClass("btn_thumbnail_click"))
       {
-        getPreview(reader,'.drag-area-th',num);
+        getPreview(reader,'.drag-area-thumb');
         reader.readAsDataURL(input.files[0]);
         
       }
@@ -67,7 +63,7 @@ function filePreview(input,num) {
           {
         var reader = new FileReader();  
        
-        getPreview(reader,'#uploaded_image',num);
+        getPreview(reader,'#uploaded_image');
         reader.readAsDataURL(file);
        
       })(files[i]);
@@ -79,17 +75,22 @@ function filePreview(input,num) {
   }
 }
 
-function getPreview(reader,target_elem,num)
+function getPreview(reader,target_elem)
 {
   reader.onload = function (e) {
-    if(target_elem==".drag-area-th")
+    if(target_elem==".drag-area-thumb")
     {
       console.log(e.target.result)
-      $(target_elem+num).html('<img src="'+e.target.result+'" width="450" height="300"/>');
+      $(target_elem).html('<img src="'+e.target.result+'" width="450" height="300"/>');
     }
     else if(target_elem=="#uploaded_image")
     {
-      $(target_elem+num).append('<div class="col-md-4 border p-1"><div class="card border-0"><div class="card-body"><img src="'+e.target.result+'" class="img-responsive" width="140px" height="150px" /></div></div></div>');
+      $(target_elem).append('<div class="col-md-4 border p-1"><div class="card border-0"><div class="card-body"><img src="'+e.target.result+'" class="img-responsive" width="140px" height="150px" /></div></div></div>');
     }
   }
 }
+ $('.btnbrowse_def').click(function(e){
+   alert("dfdffd");
+var id=$(this).attr("id");
+alert(id);
+ });

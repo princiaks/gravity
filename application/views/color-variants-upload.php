@@ -27,13 +27,13 @@
             <div class="row">
             <div class="col-md-4">
             <label class="control-label">Default Thumbnail</label>
-            <input type="file" name="thumb[<?php echo $color?>][]" id="thumb" class="file <?php /* echo "btn_thumbnail_click-$i"; */?> data-show-upload="false" data-show-caption="true" hidden multiple >
-           <div class="drag-area-thumb" id="for_thumbnail">
+            <input type="file" name="thumb[<?php echo $color?>][]" id="btn_thumbnail-<?php echo $i;?>_click" class="file btn_thumbnail_click" data-show-upload="false" data-show-caption="true" hidden multiple >
+           <div class="drag-area-thumb drag-area-th<?php echo $i;?>" id="for_thumbnail">
             <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
             <header>Drag & Drop To Upload File</header>
             
             <span>OR</span>
-            <button type="button" class="btnbrowse_def" id=<?php /* echo "btn_thumbnail-$i"; */?>>Browse File</button>
+            <button type="button" class="btnbrowse_def" id="btn_thumbnail-<?php echo $i;?>">Browse File</button>
            
 
            
@@ -42,13 +42,13 @@
             </div>
              <div class="col-md-8">
             <label class="control-label">Product Images</label>
-            <input type="file" name="prod[<?php echo $color;?>][]" id="prod" class="file btn_prodimg_click" data-show-upload="false" data-show-caption="true" multiple hidden>
+            <input type="file" name="prod[<?php echo $color;?>][]" id="btn_prodimg-<?php echo $i;?>_click" class="file btn_prodimg_click" data-show-upload="false" data-show-caption="true" multiple hidden>
             <div class="drag-area">
             <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
             <header>Drag & Drop To Upload File</header>
            
             <span>OR</span>
-            <button type="button" id="btn_prodimg">Browse File</button>
+            <button type="button" class="btnbrowse_prod" id="btn_prodimg-<?php echo $i;?>">Browse File</button>
             
 
             </div>
@@ -61,7 +61,7 @@
             <div class="col-md-4"></div>
             <div class="col-md-8">
             <div class="container-fluid mt-3">
-            <div class="row" id="uploaded_image">
+            <div class="row" id="uploaded_image<?php echo $i;?>">
             
             </div>
             </div>
