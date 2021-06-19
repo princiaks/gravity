@@ -29,22 +29,43 @@ class Gravitycon extends CI_Controller {
 		$this->load->view('home');
         $this->load->view('footer');
 	}
-	public function do_upload_process($imgdata,$product_id)
-	{	
-		$this->load->library('upload');
-		
-			if (!is_dir('uploads/'.$product_id.'/default-thumbnails')) {
-				mkdir('uploads/'.$product_id.'/default-thumbnails', 0777, TRUE);
+	public function gravity_upload()
+	{
+			$this->load->library('upload');
+			$this->load->helper('form');
+   			
+
+			$data =array();
+			$params=array('product_name','slug','sku','mrp','selling_price');
+			$params2=array('thumb','prod');
+			$params3=array('product_type','color_variants','size_variants','product_category');
+			foreach($params as $param)
+			{
+				$data[$param]=$_POST[$param];
+			}
+			foreach($params2 as $param)
+			{
+				$data[$param]=$_FILES[$param];
+			}
+
+			foreach($params3 as $param)
+			{
+				$data[$param]=json_encode($_POST[$param]);
+			}
+			
+			$data['product_id']= 'prod' . strtotime('now') .rand(0,9);
+			if (!is_dir('uploads/'.$data['product_id'].'/default-thumbnails')) {
+				mkdir('uploads/'.$data['product_id'].'/default-thumbnails', 0777, TRUE);
 					   
 			}
-			if (!is_dir('uploads/'.$product_id.'/product-images')) {
-				mkdir('uploads/'.$product_id.'/product-images', 0777, TRUE);
+			if (!is_dir('uploads/'.$data['product_id'].'/product-images')) {
+				mkdir('uploads/'.$data['product_id'].'/product-images', 0777, TRUE);
 					 
 			}
 			$config['allowed_types'] = 'gif|jpg|jpeg|png|GIF|JPG|JPEG|PNG';
-			$config['upload_path'] = 'uploads/'.$product_id.'/default-thumbnails';
+			$config['upload_path'] = 'uploads/'.$data['product_id'].'/default-thumbnails';
 			$this->load->library('upload',$config);
-			foreach($imgdata['thumbnail'] as $thumb=>$value)
+			foreach($data['thumb'] as $thumb=>$value)
 			{
 				if($thumb=='name')
 				{
@@ -60,81 +81,60 @@ class Gravitycon extends CI_Controller {
 			$this->upload->initialize($config);
 			$this->upload->do_upload('file');
 			$uploadData=$this->upload->data();
-			$thumb_filepath=base_url().'uploads/'.$product_id.'/default-images/'.$uploadData['file_name'];
+			$data['default_thumbnail_url']=$uploadData['full_path'];
+			$data['default_thumbnail_name']=$uploadData['file_name'];
 			
 			
-			
-			$config['upload_path'] = 'uploads/'.$product_id.'/product-images';
+			$config['upload_path'] = 'uploads/'.$data['product_id'].'/product-images';
 			$this->load->library('upload',$config);
 			
 			$i=0;
-			$count=count($imgdata['prodimg']['name']);
+			
+			//echo $data['prod']['name'][0];
+			$count=count($data['prod']['name']);
 			for($i=0; $i<$count;$i++)
 			{
-			foreach($imgdata['prodimg'] as $prod => $value)
+			foreach($data['prod'] as $prod => $value)
 			{
-				$product[$prod]=$value[$i];			
+				$product[$i][$prod]=$value[$i];
+				
+					
 			}
-			$name=$product['name'];
+		} 
+		$i=0;
+		foreach($product as $prod)
+		{
+			$name=$prod['name'];
 			$namesplit = explode(".",$name);
 			$name = 'prod_img'.strtotime('now').rand(0,9);
 			$name = $name.".".$namesplit[1];
 			$_FILES['file']['name']=$name;
-			$_FILES['file']['type']=$product['type'];
-			$_FILES['file']['tmp_name']=$product['tmp_name'];
-			$_FILES['file']['error']=$product['error'];
-			$_FILES['file']['size']=$product['size'];
+			$_FILES['file']['type']=$prod['type'];
+			$_FILES['file']['tmp_name']=$prod['tmp_name'];
+			$_FILES['file']['error']=$prod['error'];
+			$_FILES['file']['size']=$prod['size'];
+
 			$this->load->library('upload',$config);
 			$this->upload->initialize($config);
 			$this->upload->do_upload('file');
 			$uploadData=$this->upload->data();
-			$prod_filepath[$i]=base_url().'uploads/'.$product_id.'/product-images/'.$uploadData['file_name'];
-			} 
-			$upload_data=array(
-				'thumbnailPath'=>$thumb_filepath,
-				'prodimgPath'=>json_encode($prod_filepath)
-			);
-			return $upload_data;
-	}
-	public function gravity_upload()
-	{
-			$this->load->helper('form');
-   			
-
-			$data =array();
-			$params=array('product_name','slug','sku','mrp','selling_price');
-			
-			$params2=array('product_type','color_variants','size_variants','product_category');
-			foreach($params as $param)
-			{
-				$data[$param]=$_POST[$param];
-			}
-			foreach($params2 as $param)
-			{
-				$data[$param]=json_encode($_POST[$param]);
-			}
-
-			$product_id=$this->gravity_model->insert_product_details($data);
-			 
-			$imgdata['thumbnail']=$_FILES['thumb'];
-			$imgdata['prodimg']=$_FILES['prod'];
-
-
-			$upload_data=$this->do_upload_process($imgdata,$product_id);
-			$upload_data['color']='primary';
-			$upload_data['product_id']=$product_id;
-			$this->gravity_model->insert_image_details($upload_data);
-			
-			$this->load->view('header');
-			$data=array(
+			$data['prod_image_url'][$i]=$uploadData['full_path'];
+			$data['prod_image_name'][$i]=$uploadData['file_name'];
+			//print_r($uploadData);
+			$i++;
+					
+		}
+		$this->gravity_model->insert_product_details($data);
+		$this->load->view('header');
+		$data=array(
 			'color_variants'=>$data['color_variants'],
 			'size_variants'=>$data['size_variants'],
 			'product_name'=>$data['product_name'],
 			'sku'=>$data['sku'],
-			'product_id'=>$product_id
-			);
-			$this->load->view('product-stock-details',$data);
-        	$this->load->view('footer');
+			'product_id'=>$data['product_id']
+		);
+		$this->load->view('product-stock-details',$data);
+        $this->load->view('footer');
 		
 
 		/* $this->db->insert('product_details',$data);   */
