@@ -4,8 +4,14 @@ $(document ).ready(function() {
 
 });
 $("#add").click(function (e) {
-    var html="";
+ 
+   
+
     e.preventDefault;
+    var html="";
+    var colors=$('#color_variant').val();
+    alert(colors);
+    console.log(colors);
     /* var CookieValue=document.cookie; */
     html += `<tr>
     <td >

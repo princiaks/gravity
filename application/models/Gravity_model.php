@@ -77,4 +77,11 @@ class Gravity_model extends CI_Model {
                 $result=$query->result();
                 return $result;
          }
+         public function get_product_colorvariants($product_id)
+         {
+                $this->db->select('color_variants');
+                $this->db->from('product_master');
+                if (!is_null($product_id)) $this->db->where('product_id', $product_id);
+                return $this->db->get()->row();
+         }
 }

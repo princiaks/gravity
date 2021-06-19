@@ -124,13 +124,10 @@ class Gravitycon extends CI_Controller {
 					
 		}
 		$this->gravity_model->insert_product_details($data);
-		$this->load->helper('cookie');
-		set_cookie('color_variants',$data['color_variants']);
-		set_cookie('size_variants',$data['color_variants']);
 		$this->load->view('header');
 		$data=array(
-			/* 'color_variants'=>$data['color_variants'],
-			'size_variants'=>$data['size_variants'], */
+			'color_variants'=>$data['color_variants'],
+			'size_variants'=>$data['size_variants'],
 			'product_name'=>$data['product_name'],
 			'sku'=>$data['sku'],
 			'product_id'=>$data['product_id']
@@ -143,16 +140,23 @@ class Gravitycon extends CI_Controller {
    
 		
 	}
+	public function gravity_colorvariants()
+	{
+
+	}
 	public function gravityproduct_stock()
 	{
 		$data =array();
+		$datatoview=array();
 		$data['product_id']=$_POST['product_id'];
 		$data['product_details']=$_POST['product_details'];
 		
 		$this->gravity_model->insert_product_stock_details($data);
 		/* $data['stock_details']=$this->gravity_model->get_stock_details($data['product_id']); */
+		$datatoview['product_id']=$data['product_id'];
+		$datatoview['colors']=$this->gravity_model->get_product_colorvariants($data['product_id']);
 		$this->load->view('header');
-		$this->load->view('product_color_variant_imgupload',$data);
+		$this->load->view('color-variants-upload',$datatoview);
 		/* $this->load->view('view-product-stock-details',$data); */
         $this->load->view('footer');
 

@@ -1,6 +1,8 @@
 <?php 
-    $colors=json_decode(get_cookie('color_variants'));
-    $size=json_decode(get_cookie('size_variants'));
+    $colors=json_decode($color_variants);
+    $size=json_decode($size_variants);
+    $color_hidd=trim(str_replace('"', " ", $color_variants),'[]');
+    $size_hidd=trim(str_replace('"', " ", $size_variants),'[]');
     ?>
 <div class="container border">
 <h3><?php echo $product_name; ?></h3>
@@ -27,6 +29,8 @@
                             }
                             ?>
                             </select>
+                            <input type="hidden" name="color_variant" id="color_variant" value="<?php echo $color_hidd;?>">
+                            <input type="hidden" name="size_variant" id="size_variant" value="<?php echo $size_hidd;?>">
                         </td>
                         <td>
                             <select class="form-control" name="product_details[size_variant][]">
