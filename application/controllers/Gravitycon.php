@@ -163,13 +163,11 @@ class Gravitycon extends CI_Controller {
 		$upload_data['product_id']=$product_id;
 		
 		$this->gravity_model->insert_image_details($upload_data);
-
-		
-		
-		exit;
-		
-
-
+		$data['stock_details']=$this->gravity_model->get_stock_details($product_id);
+		$data['product_id']=$product_id;
+		$this->load->view('header');
+		$this->load->view('view-product-stock-details',$data);
+		$this->load->view('footer');
 	}
 	public function gravityproduct_stock()
 	{
