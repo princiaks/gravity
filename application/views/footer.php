@@ -11,13 +11,15 @@
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js" integrity="sha512-9CWGXFSJ+/X0LWzSRCZFsOPhSfm6jbnL+Mpqo0o8Ke2SYr8rCTqb4/wGm+9n13HtDE1NQpAEOrMecDZw4FXQGg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
 <script type = 'text/javascript' src="<?php echo base_url();?>asset/js/index.js"></script>
 <script type = 'text/javascript' src="<?php echo base_url();?>asset/js/script.js"></script>
 <script type = 'text/javascript' src="<?php echo base_url();?>asset/js/repeater.js"></script>
 
+<script type = 'text/javascript'> var base_url= window.location.origin+'/gravity/index.php/';</script>
 
 </body>
 </html>

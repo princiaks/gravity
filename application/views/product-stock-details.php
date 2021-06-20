@@ -51,6 +51,13 @@
                             class="form-control"
                             value="<?php echo $sku."-"?>"
                           />
+                          <input
+                            type="hidden"
+                            name="psku"
+                            id="psku"
+                            value="<?php echo $sku."-"?>"
+                          />
+                          
                         </td>
                         <td>
                           <input

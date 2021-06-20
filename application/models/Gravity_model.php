@@ -73,11 +73,19 @@ class Gravity_model extends CI_Model {
         }         
          }
 
-         public function get_stock_details($product_id)
+         public function get_stock_details_list($product_id)
          {
-
+                $this->db->select('mrp,selling_price');
+                $this->db->from('product_master');
+                if (!is_null($product_id)) $this->db->where('product_id', $product_id);
+                $res=$this->db->get()->row();
+                
                 $query = $this->db->get_where('product_stock_details', array('product_id' => $product_id));
-                $result=$query->result();
+                $res1=$query->result();
+                $result=array(
+                        'p_master'=>$res,
+                        'stock_det'=>$res1
+                );
                 return $result;
          }
          public function get_product_colorvariants($product_id)
@@ -86,5 +94,16 @@ class Gravity_model extends CI_Model {
                 $this->db->from('product_master');
                 if (!is_null($product_id)) $this->db->where('product_id', $product_id);
                 return $this->db->get()->row();
+         }
+         public function delete_from_stock($id)
+         {
+                $this->db->delete('product_stock_details', array('id' => $id)); 
+                if($this->db->affected_rows()>0)
+                {
+                        return true;
+                }
+                else{
+                        return false;
+                }
          }
 }

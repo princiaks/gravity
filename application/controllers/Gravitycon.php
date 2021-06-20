@@ -149,26 +149,6 @@ class Gravitycon extends CI_Controller {
         	$this->load->view('footer');
 		
 	}
-	public function gravity_colorvariants()
-	{
-		$data=array();
-		$imgdata=array();
-		$product_id=$_POST['product_id'];
-		
-		$imgdata['thumbnail']=$_FILES['thumbnail'];
-		$imgdata['prodimg']=$_FILES['prodimg'];
-
-		$upload_data=$this->do_upload_process($imgdata,$product_id);
-		$upload_data['color']=$_POST['color_name'];
-		$upload_data['product_id']=$product_id;
-		
-		$this->gravity_model->insert_image_details($upload_data);
-		$data['stock_details']=$this->gravity_model->get_stock_details($product_id);
-		$data['product_id']=$product_id;
-		$this->load->view('header');
-		$this->load->view('view-product-stock-details',$data);
-		$this->load->view('footer');
-	}
 	public function gravityproduct_stock()
 	{
 		$data =array();
@@ -186,5 +166,32 @@ class Gravitycon extends CI_Controller {
         $this->load->view('footer');
 
 	}
+	public function gravity_colorvariants()
+	{
+		$data=array();
+		$imgdata=array();
+		$product_id=$_POST['product_id'];
+		
+		$imgdata['thumbnail']=$_FILES['thumbnail'];
+		$imgdata['prodimg']=$_FILES['prodimg'];
+
+		$upload_data=$this->do_upload_process($imgdata,$product_id);
+		$upload_data['color']=$_POST['color_name'];
+		$upload_data['product_id']=$product_id;
+		
+		$this->gravity_model->insert_image_details($upload_data);
+		$data['stock_details']=$this->gravity_model->get_stock_details_list($product_id);
+		$data['product_id']=$product_id;
+		$this->load->view('header');
+		$this->load->view('view-product-stock-details',$data);
+		$this->load->view('footer');
+	}
+	public function delete_from_stock()
+	{
+		$id=$_POST['id'];
+		$query=$this->gravity_model->delete_from_stock($id);
+		echo $query;
+	}
+	
 	
 }

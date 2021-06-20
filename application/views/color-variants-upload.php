@@ -88,10 +88,10 @@ $i++;
     }?>
     <div class="container">
     <div class="row">
-    <div class="col-md-12 p-2 text-center">
+    <div class="col-md-12 p-2 text-right">
     <input
         type="submit"
-        value="Finish"
+        value="Save and Next"
         name="submit"
         id="submit"
         class="btn btn-primary"

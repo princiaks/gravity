@@ -9,6 +9,7 @@ $("#add").click(function (e) {
     var html="";
     var colorhtml=$('#select_color').html();
     var sizehtml=$('#select_size').html();
+    var sku=$('#psku').val();
     html += `<tr>
     <td >
 
@@ -29,7 +30,7 @@ $("#add").click(function (e) {
         type="text"
         name="product_details[sku][]"
         class="form-control"
-        value="fg-"
+        value="`+sku+`"
       />
     </td>
     <td>
