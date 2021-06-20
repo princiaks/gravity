@@ -10,7 +10,7 @@
 
 <div class="row">
 <form role="form" class="dropzone" method="post" enctype="multipart/form-data" id="prod_secondary_details" name="prod_secondary_details" action="<?php echo site_url('gravitycon/gravityproduct_stock');?>">
-<table class="table table-borderd" id="table-weight">
+<table class="table table-borderd" id="table-stockdet">
                       <tr>
                         <th>colour variant</th>
                         <th>size variant</th>
@@ -19,7 +19,7 @@
                       </tr>
                       <tr>
                         <td >
-                            <select class="form-control" name="product_details[color_variant][]">
+                            <select class="form-control" name="product_details[color_variant][]" id="select_color">
                             <option selected>Select Color</option>
                             <?php foreach($colors as $color) 
                             {
@@ -33,7 +33,7 @@
                             <input type="hidden" name="size_variant" id="size_variant" value="<?php echo $size_hidd;?>">
                         </td>
                         <td>
-                            <select class="form-control" name="product_details[size_variant][]">
+                            <select class="form-control" name="product_details[size_variant][]" id="select_size">
                             <option selected>Select Size</option>
                             <?php foreach($size as $sizz)
                             {

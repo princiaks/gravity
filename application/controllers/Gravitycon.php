@@ -44,36 +44,45 @@ class Gravitycon extends CI_Controller {
 			$config['allowed_types'] = 'gif|jpg|jpeg|png|GIF|JPG|JPEG|PNG';
 			$config['upload_path'] = 'uploads/'.$product_id.'/default-thumbnails';
 			$this->load->library('upload',$config);
+			$count=count($imgdata['thumbnail']['name']);
+			
+			for($i=0;$i<$count;$i++)
+			{
 			foreach($imgdata['thumbnail'] as $thumb=>$value)
 			{
+				
 				if($thumb=='name')
 				{
-					$namesplit = explode(".",$value);
-					$value='def_img'.strtotime('now').rand(0,9);
-					$value=$value.".".$namesplit[1];
+					$namesplit = explode(".",$value[$i]);
+					$value[$i]='def_img'.strtotime('now').rand(0,9);
+					$value[$i]=$value[$i].".".$namesplit[1];
 				}
-				$_FILES['file'][$thumb]=$value;
+				$_FILES['file'][$thumb]=$value[$i];
 		
 			}
-
 
 			$this->upload->initialize($config);
 			$this->upload->do_upload('file');
 			$uploadData=$this->upload->data();
-			$thumb_filepath=base_url().'uploads/'.$product_id.'/default-images/'.$uploadData['file_name'];
-			
-			
-			
+			$thumb_filepath[$i]=base_url().'uploads/'.$product_id.'/default-images/'.$uploadData['file_name'];
+
+		}
+		
 			$config['upload_path'] = 'uploads/'.$product_id.'/product-images';
 			$this->load->library('upload',$config);
+			$count1=count($imgdata['prodimg']['name']);
 			
-			$i=0;
-			$count=count($imgdata['prodimg']['name']);
+			
+			for($j=0;$j<$count1;$j++)
+			{
+			$count=count($imgdata['prodimg']['name'][$j]);
 			for($i=0; $i<$count;$i++)
 			{
 			foreach($imgdata['prodimg'] as $prod => $value)
 			{
-				$product[$prod]=$value[$i];			
+			
+				$product[$prod]=$value[$j][$i];		
+			
 			}
 			$name=$product['name'];
 			$namesplit = explode(".",$name);
@@ -88,12 +97,15 @@ class Gravitycon extends CI_Controller {
 			$this->upload->initialize($config);
 			$this->upload->do_upload('file');
 			$uploadData=$this->upload->data();
-			$prod_filepath[$i]=base_url().'uploads/'.$product_id.'/product-images/'.$uploadData['file_name'];
+			$prod_filepath[$j][$i]=base_url().'uploads/'.$product_id.'/product-images/'.$uploadData['file_name'];
 			} 
+		}
+		
 			$upload_data=array(
 				'thumbnailPath'=>$thumb_filepath,
-				'prodimgPath'=>json_encode($prod_filepath)
+				'prodimgPath'=>$prod_filepath
 			);
+			
 			return $upload_data;
 	}
 	public function gravity_upload()
@@ -116,12 +128,12 @@ class Gravitycon extends CI_Controller {
 
 			$product_id=$this->gravity_model->insert_product_details($data);
 			 
-			$imgdata['thumbnail']=$_FILES['thumb'];
-			$imgdata['prodimg']=$_FILES['prod'];
+			$imgdata['thumbnail']=$_FILES['thumbnail'];
+			$imgdata['prodimg']=$_FILES['prodimg'];
 
-
+			
 			$upload_data=$this->do_upload_process($imgdata,$product_id);
-			$upload_data['color']='primary';
+			$upload_data['color'][0]='primary';
 			$upload_data['product_id']=$product_id;
 			$this->gravity_model->insert_image_details($upload_data);
 			
@@ -136,20 +148,26 @@ class Gravitycon extends CI_Controller {
 			$this->load->view('product-stock-details',$data);
         	$this->load->view('footer');
 		
-
-		/* $this->db->insert('product_details',$data);   */
-   
-		
 	}
 	public function gravity_colorvariants()
 	{
 		$data=array();
+		$imgdata=array();
 		$product_id=$_POST['product_id'];
-		$thumb=$_FILES['thumbnail'];
-		$prod=$_FILES['prodimg'];
-		print_r($thumb).'<br><br>';
-		/* print_r($prod); */
+		
+		$imgdata['thumbnail']=$_FILES['thumbnail'];
+		$imgdata['prodimg']=$_FILES['prodimg'];
+
+		$upload_data=$this->do_upload_process($imgdata,$product_id);
+		$upload_data['color']=$_POST['color_name'];
+		$upload_data['product_id']=$product_id;
+		
+		$this->gravity_model->insert_image_details($upload_data);
+
+		
+		
 		exit;
+		
 
 
 	}

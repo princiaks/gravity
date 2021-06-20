@@ -96,7 +96,7 @@
             <div class="row">
             <div class="col-md-4">
             <label class="control-label">Default Thumbnail</label>
-            <input type="file" name="thumb" id="btn_thumbnail-0_click" class="file btn_thumbnail_click" data-show-upload="false" data-show-caption="true" hidden required >
+            <input type="file" name="thumbnail[0]" id="btn_thumbnail-0_click" class="file btn_thumbnail_click" data-show-upload="false" data-show-caption="true" hidden required >
            <div class="drag-area-thumb drag-area-th0" id="for_thumbnail">
             <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
             <header>Drag & Drop To Upload File</header>
@@ -111,7 +111,7 @@
             </div>
              <div class="col-md-8">
             <label class="control-label">Product Images</label>
-            <input type="file" name="prod[]" id="btn_prodimg-0_click" class="file btn_prodimg_click" data-show-upload="false" data-show-caption="true" multiple hidden required>
+            <input type="file" name="prodimg[0][]" id="btn_prodimg-0_click" class="file btn_prodimg_click" data-show-upload="false" data-show-caption="true" multiple hidden required>
             <div class="drag-area">
             <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
             <header>Drag & Drop To Upload File</header>

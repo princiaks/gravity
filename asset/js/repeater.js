@@ -4,15 +4,11 @@ $(document ).ready(function() {
 
 });
 $("#add").click(function (e) {
- 
-   
 
     e.preventDefault;
     var html="";
-    var colors=$('#color_variant').val();
-    alert(colors);
-    console.log(colors);
-    /* var CookieValue=document.cookie; */
+    var colorhtml=$('#select_color').html();
+    var sizehtml=$('#select_size').html();
     html += `<tr>
     <td >
 
@@ -20,18 +16,12 @@ $("#add").click(function (e) {
         
      </select> -->
      <select class="form-control" id="color_1" name="product_details[color_variant][]">
-     <option selected>Select Color</option>
-     <option >Blue</option>
-     <option >Green</option>
-     <option >Yellow</option>
+     `+colorhtml+`
         </select>
     </td>
     <td>
         <select class="form-control" name="product_details[size_variant][]">
-        <option selected>Select Size</option>
-        <option >40</option>
-        <option >41</option>
-        <option >42</option>
+        `+sizehtml+`
         </select>
     </td>
     <td>
@@ -59,11 +49,11 @@ $("#add").click(function (e) {
     />
     </td>
   </tr>    `;
-  $("#table-weight").append(html);
+  $("#table-stockdet").append(html);
  
 });
 
-$("#table-weight").on('click', '#remove', function (e) {
+$("#table-stockdet").on('click', '#remove', function (e) {
 e.preventDefault;
   $(this).closest('tr').remove();
 }); 

@@ -28,8 +28,9 @@
             <div class="col-md-12">
             <div class="row">
             <div class="col-md-4">
+            <input type="hidden" name="color_name[]" value="<?php echo $color; ?>">
             <label class="control-label">Default Thumbnail</label>
-            <input type="file" name="thumbnail[<?php echo $color?>][]" id="btn_thumbnail-<?php echo $i;?>_click" class="file btn_thumbnail_click" data-show-upload="false" data-show-caption="true" hidden multiple >
+            <input type="file" name="thumbnail[<?php echo $i;?>]" id="btn_thumbnail-<?php echo $i;?>_click" class="file btn_thumbnail_click" data-show-upload="false" data-show-caption="true" hidden >
            <div class="drag-area-thumb drag-area-th<?php echo $i;?>" id="for_thumbnail">
             <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
             <header>Drag & Drop To Upload File</header>
@@ -44,7 +45,7 @@
             </div>
              <div class="col-md-8">
             <label class="control-label">Product Images</label>
-            <input type="file" name="prodimg[<?php echo $color;?>][]" id="btn_prodimg-<?php echo $i;?>_click" class="file btn_prodimg_click" data-show-upload="false" data-show-caption="true" multiple hidden>
+            <input type="file" name="prodimg[<?php echo $i;?>][]" id="btn_prodimg-<?php echo $i;?>_click" class="file btn_prodimg_click" data-show-upload="false" data-show-caption="true" multiple hidden>
             <div class="drag-area">
             <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
             <header>Drag & Drop To Upload File</header>

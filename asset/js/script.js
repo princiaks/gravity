@@ -19,7 +19,6 @@ $(document).ready(function(e)
     e.preventDefault();  
     $(this).removeClass('active');
       var files_list = e.originalEvent.dataTransfer;
-      console.log()
       filePreview(files_list);
 
   
@@ -37,12 +36,10 @@ $('.btn_thumbnail_click,.btn_prodimg_click').change(function(e){
   id=$(this).attr("id");
   var num = id.substring(id.lastIndexOf('-')+1);
   num=num.charAt(0);
-  alert(num);
   filePreview(this,num);
 });
 var data;
 function filePreview(input,num) {
-  console.log(input);
  
   if (input.files && input.files[0]) {
       var reader = new FileReader();
@@ -84,7 +81,6 @@ function getPreview(reader,target_elem,num)
   reader.onload = function (e) {
     if(target_elem==".drag-area-th")
     {
-      console.log(e.target.result)
       $(target_elem+num).html('<img src="'+e.target.result+'" width="450" height="300"/>');
     }
     else if(target_elem=="#uploaded_image")

@@ -27,20 +27,26 @@ class Gravity_model extends CI_Model {
 
 
         public function insert_image_details($data=array())
-        {          
+        {     
+                  
+                $i=0;
+                foreach($data['color'] as $color)
+                {
                        $image_table_data=array(
                                 'product_id'=>$data['product_id'],
                                 'type'=>'default',
-                                'color'=>$data['color'],
-                                'image_url'=>$data['thumbnailPath']
+                                'color'=>$color,
+                                'image_url'=>$data['thumbnailPath'][$i]
 
                         ); 
                         $this->db->insert('product_image_master',$image_table_data);
                        
                                 $image_table_data['type']='prodimg';
-                                $image_table_data['image_url'] = $data['prodimgPath'];
-                                               
+                                $image_table_data['image_url'] = json_encode($data['prodimgPath'][$i]);
+                         
                         $this->db->insert('product_image_master',$image_table_data);
+                        $i++;
+                }
         }
 		
          public function get_product_details()
@@ -57,13 +63,11 @@ class Gravity_model extends CI_Model {
                 {
                 foreach($data['product_details'] as $index=>$value)
                 {       
-                        /* print_r($index);
-                        print_r($value); */
+                        
                         $table_data[$index]=$value[$i];  
                        
                 }
                 $table_data['product_id']=$product_id;
-                //print_r($table_data).'<br>';
                 $this->db->insert('product_stock_details',$table_data);
 
         }         
