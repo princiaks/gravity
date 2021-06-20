@@ -23,7 +23,6 @@ $(document).ready(function(e)
     num=num.charAt(0);
     
       var files_list = e.originalEvent.dataTransfer;
-      var num=0;
       filePreview(files_list,num,id);
 
   

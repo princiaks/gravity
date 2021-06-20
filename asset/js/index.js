@@ -67,4 +67,26 @@ function sweetalertConfirm(sweet_data,handle)
     
 
 }
+$('#submit').click(function(e){
+  e.preventDefault;
+  var prod_id=$('#prod_name_select').val();
+
+  $.ajax({
+    url: base_url+"Gravitycon/get_product_images",
+    type: 'POST',
+    data: {
+        product_id:prod_id
+    },
+    dataType: 'json',
+    success: function(data) {
+      console.log(data);
+      var data=JSON.parse(data);
+      
+      $('#dispCont').html(data);
+    
+    }
+});
+
+
+})
 

@@ -4,6 +4,8 @@
     $color_hidd=trim(str_replace('"', " ", $color_variants),'[]');
     $size_hidd=trim(str_replace('"', " ", $size_variants),'[]');
     ?>
+    <div class='card'>
+		<div class=' wrapper'>
 <div class="container border">
 <h3><?php echo $product_name; ?></h3>
 <h6><?php echo "SKU:-".$sku;?></h6>
@@ -103,3 +105,4 @@
 </form>
 </div>
 </div>
+    </div></div>

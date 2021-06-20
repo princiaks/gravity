@@ -49,12 +49,7 @@ class Gravity_model extends CI_Model {
                 }
         }
 		
-         public function get_product_details()
-         {
-               /*  $query = $this->db->query("select color_variants from product_master");
-
-                $row = $query->row(); */
-         }
+   
          public function insert_product_stock_details($data=array())
          {
                 $product_id=$data['product_id'];
@@ -106,4 +101,24 @@ class Gravity_model extends CI_Model {
                         return false;
                 }
          }
+         public function get_product_names()
+         {
+                $query= $this->db->query("select product_id,product_name from product_master order by created_on limit 0,10");
+                $result=$query->result_array();
+                return $result;
+
+         }
+         public function get_product_images($product_id)
+         {
+                 $query=$this->db->query("SELECT type,color,image_url FROM `product_image_master` WHERE product_id='".$product_id."' GROUP by type,color");
+                 $result['p_images']=$query->result_array();
+
+                 $query=$this->db->query("SELECT product_name,product_category,product_type,mrp,selling_price,color_variants,size_variants FROM `product_master` WHERE product_id='".$product_id."'");
+                 $result['p_master']=$query->result_array();
+
+                 $query=$this->db->query("select color_variant,size_variant,stock,sku from product_stock_details WHERE product_id='".$product_id."' group by color_variant,size_variant");
+                 $result['p_stock']=$query->result_array();
+
+                 return $result;
+                }
 }

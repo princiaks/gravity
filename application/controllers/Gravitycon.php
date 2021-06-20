@@ -192,6 +192,20 @@ class Gravitycon extends CI_Controller {
 		$query=$this->gravity_model->delete_from_stock($id);
 		echo $query;
 	}
+	public function get_product_display()
+	{
+		$data['product_names']=$this->gravity_model->get_product_names();
+		$this->load->view('header');
+		$this->load->view('final_display',$data);
+		$this->load->view('footer');
+	}
+	public function get_product_images()
+	{
+		$product_id=$_POST['product_id'];
+		$product_images=$this->gravity_model->get_product_images($product_id);
+		echo json_encode($product_images);
+
+	}
 	
 	
 }
