@@ -18,8 +18,13 @@ $(document).ready(function(e)
     e.stopPropagation();
     e.preventDefault();  
     $(this).removeClass('active');
+    id=$(this).attr("id");
+    var num = id.substring(id.lastIndexOf('-')+1);
+    num=num.charAt(0);
+    
       var files_list = e.originalEvent.dataTransfer;
-      filePreview(files_list);
+      var num=0;
+      filePreview(files_list,num,id);
 
   
    
@@ -39,8 +44,7 @@ $('.btn_thumbnail_click,.btn_prodimg_click').change(function(e){
   filePreview(this,num);
 });
 var data;
-function filePreview(input,num) {
- 
+function filePreview(input,num,dropitem="null") {
   if (input.files && input.files[0]) {
       var reader = new FileReader();
       var formData = new FormData();
@@ -49,13 +53,13 @@ function filePreview(input,num) {
       var length=0;
 
 
-       if($(input).hasClass("btn_thumbnail_click"))
+       if($(input).hasClass("btn_thumbnail_click") || $("#"+dropitem).hasClass("dropthumb") )
       {
         getPreview(reader,'.drag-area-th',num);
         reader.readAsDataURL(input.files[0]);
         
       }
-      else if($(input).hasClass("btn_prodimg_click"))
+      else if($(input).hasClass("btn_prodimg_click") ||  $("#"+dropitem).hasClass("dropprod"))
       {
           
           for( i=0 ; i < files.length; i++)

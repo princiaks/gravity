@@ -1,13 +1,11 @@
 <?php 
-  //print_r($stock_details); 
   extract($stock_details);
- /*  print_r($p_master); exit; */
     ?>
 <div class="container">
 <h3><?php echo "Product Details"; ?></h3>
 
 <div class="row">
-<form role="form" class="dropzone" method="post" enctype="multipart/form-data" id="prod_secondary_details" name="prod_secondary_details" action="<?php echo site_url('gravitycon/gravityproduct_stock');?>">
+<form role="form" class="dropzone" method="post" enctype="multipart/form-data" id="view_prod_sec_details" name="prod_secondary_details" action="<?php echo site_url('gravitycon/gravityproduct_stock');?>">
 <table class="border"  id="prod_stock_details">
                       <thead>
                       <tr>

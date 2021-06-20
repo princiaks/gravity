@@ -1,6 +1,10 @@
 $(document).ready(function() {
     $('.prodsel').selectpicker();  
     $('#prod_details').validate();
+    $('#prod_secondary_details').validate();
+    $('#view_prod_sec_details').validate();
+    $('#color_variant_upload').validate();
+
     $('#prod_stock_details').DataTable();
   });
   $('.del_row').click(function(e){
